@@ -12,5 +12,12 @@ pipeline {
 		git url: "${env.GIT_REPO}"
 	    }
 	}
+
+     	stage('Test Internet') {
+	    steps {
+               sh 'ping -c 3 google.com'
+            }
+        }
+
     }
 }

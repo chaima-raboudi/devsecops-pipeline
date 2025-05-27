@@ -1,13 +1,19 @@
-const express = require('express');
+import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+
+const __dirname = path.dirname(__filename);
+
 const app = express();
-const path = require('path');
 
-app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
+console.log('Dirname:', __dirname);
+
+// Ton code express ici...
 
 app.listen(3000, () => {
-  console.log('Serveur en cours d\'exécution sur http://localhost:3000');
+  console.log('Server started on port 3000');
 });
+

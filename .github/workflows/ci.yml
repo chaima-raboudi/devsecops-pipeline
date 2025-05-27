@@ -27,3 +27,17 @@ jobs:
 
       - name: Run tests
         run: npm run test
+
+      - name: 🧹 Lint code
+        run: npm run lint
+
+      - name: 🔍 Audit de sécurité (npm audit)
+        run: npm audit --audit-level=moderate || true
+
+      - name: 🔎 Scan image Docker avec Trivy
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: devsecops-pipeline-app:latest
+
+      - name: 🐳 Build Docker image
+        run: docker build -t devsecops-pipeline .
